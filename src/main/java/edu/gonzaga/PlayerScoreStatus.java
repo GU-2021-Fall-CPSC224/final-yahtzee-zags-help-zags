@@ -66,4 +66,8 @@ public class PlayerScoreStatus {
         return count;
     }
 
+    public int getPlayerNum() {
+        return playerNum;
+    }
+
 }

@@ -1,6 +1,8 @@
 package edu.gonzaga;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,6 +18,8 @@ public class ScorePanelGUI {
         currentScores = scores.readScoreCard();
 
         JPanel cardPanel = new JPanel();
+        JLabel playerLabel = new JLabel("Player " + scores.getPlayerNum() + ":");
+        cardPanel.add(playerLabel);
         JLabel titleLabel = new JLabel("Line        Score");
         cardPanel.add(titleLabel);
 
@@ -101,11 +105,14 @@ public class ScorePanelGUI {
             }
             try {
                 playerStatus.updateScoreCard(currentScores);
+                newPanel.setVisible(false);
+
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
 
         });
+
         return newPanel;
     }
 

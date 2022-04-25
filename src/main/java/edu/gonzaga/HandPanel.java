@@ -263,4 +263,8 @@ public class HandPanel extends JPanel implements ActionListener
             }
         }
     }
+
+    public void hidePanel() {
+        this.setVisible(false);
+    }
 }
