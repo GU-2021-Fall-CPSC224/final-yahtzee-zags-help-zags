@@ -33,4 +33,16 @@ public class DieTest
 
         Assertions.assertNotEquals(7, die.getDieValue());
     }
+
+    /**
+     * Test that if numSides is set to 6, than a 0 will never be rolled.
+     */
+    @Test
+    void sideUpTest2()
+    {
+        Die die = new Die(6);
+        die.rollDie();
+
+        Assertions.assertNotEquals(0, die.getDieValue());
+    }
 }
