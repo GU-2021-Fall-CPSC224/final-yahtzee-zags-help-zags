@@ -85,14 +85,6 @@ public class HandPanel extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         this.roll();
-
-        int[] handValues = this.getHandValues();
-
-        for (int i = 0; i < 5; i++)
-        {
-            System.out.print(handValues[i] + " ");
-        }
-        System.out.println();
     }
 
     /**
@@ -107,7 +99,7 @@ public class HandPanel extends JPanel implements ActionListener
 
         this.setBounds(this.locationX, this.locationY, this.sizeX, this.sizeY);
         this.setLayout(null);
-        this.setBackground(Color.red);
+        this.setBackground(Color.orange);
 
         this.add(this.rollButton);
         this.initHand();
@@ -179,8 +171,7 @@ public class HandPanel extends JPanel implements ActionListener
             this.disableCheckBoxes();
             this.currRollCount = 1;
         }
-
-        if (this.currRollCount == 1)
+        else if (this.currRollCount == 1)
         {
             // this.scoreHandButton.setEnabled(true);
             this.enableCheckBoxes();
