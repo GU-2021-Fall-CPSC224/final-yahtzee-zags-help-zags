@@ -1,50 +1,36 @@
-// package edu.gonzaga;
+/**
+ * This program plays an abreviated game of Yahtzee with the user
+ *
+ * CPSC 224 Spring 2022
+ * Homework Assignment #3
+ * No Sources to cite
+ *
+ * @author Jesse Adams
+ * @versin v3.0 03/04/2022
+*/
 
-// import org.junit.jupiter.api.Test;
-// import static org.junit.jupiter.api.Assertions.*;
+package edu.gonzaga;
 
-// class DieTest {
-//     @Test
-//     void testDefaultValue() {
-//         Integer expectedValue = 1;
-//         Die die = new Die(6);
-//         System.out.println("Default value should be 1");
-//         assertEquals(expectedValue, die.getSideUp());
-//     }
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-//     @Test
-//     void testInitializedValue() {
-//         Integer expectedValue = 4;
-//         Die die = new Die(6, expectedValue);
-//         System.out.println("Initialized value should be 4");
-//         assertEquals(expectedValue, die.getSideUp());
-//     }
+/**
+ * Testing class for the Die class in yahtzee project.
+ * 
+ * @author Jesse Adams
+ * @see Die.java
+ */
+public class DieTest
+{
+    /**
+     * Test that if numSides is set to 6, than a 7 will never be rolled.
+     */
+    @Test
+    void sideUpTest()
+    {
+        Die die = new Die(6);
+        die.rollDie();
 
-//     @Test
-//     void testGreaterThan() {
-//         Integer die1Value = 6;
-//         Integer die2Value = 4;
-//         Die die1 = new Die(6, die1Value);
-//         Die die2 = new Die(6, die2Value);
-//         assertTrue(die1.compareTo(die2) > 0 );
-//     }
-
-//     @Test
-//     void testLessThan() {
-//         Integer die1Value = 1;
-//         Integer die2Value = 2;
-//         Die die1 = new Die(6, die1Value);
-//         Die die2 = new Die(6, die2Value);
-//         assertTrue(die1.compareTo(die2) < 0 );
-//     }
-
-//     @Test
-//     void testEquals() {
-//         Integer die1Value = 3;
-//         Integer die2Value = 3;
-//         Die die1 = new Die(6, die1Value);
-//         Die die2 = new Die(6, die2Value);
-//         assertTrue(die1.compareTo(die2) == 0);
-//     }
-// }
-
+        Assertions.assertNotEquals(7, die.getDieValue());
+    }
+}
