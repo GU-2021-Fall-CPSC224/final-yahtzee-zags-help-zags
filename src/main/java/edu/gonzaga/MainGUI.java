@@ -1,3 +1,9 @@
+/**
+ * Sources: Crandall lecture slides set 01 for yahtzee rules
+ * 
+ * @author Zags Help Zags team
+ */
+
 package edu.gonzaga;
 
 import javax.imageio.ImageIO;
@@ -80,7 +86,7 @@ public class MainGUI {
         myPanel.setBackground(Color.black);
         mainWindow.add(myPanel);
 
-        JLabel rulesLabel = new JLabel("[INSERT RULES]");
+        JLabel rulesLabel = new JLabel("<html> Rules of Yahtzee! <br> YOUR 1ST ROLL: <br> - Roll all 5 dice <br> - If you get the exact combo you want, mark your scorecard <br> - Otherwise, continue with your 2nd roll <br> YOUR 2ND ROLL: <br> - Set aside any \"keepers\" and re-roll the rest <br> - Hate them all? Re-roll them all! <br> - If you get the exact combo you need, mark your scorecard <br> - Otherwise, continue to your 3rd roll <br> YOUR 3RD AND FINAL ROLL: <br> If you still haven't nailed a combo, or just want to maximize your score <br> - Roll some or all of your dice (as above), even any \"keepers\" you might have set aside <br> - You MUST enter a score at the end of this roll, whether or not you like your dice! <br> - If your roll doesn't suit any of your empty boxes, you have to enter a ZERO somewhere <br> - BUT scoring even a single die value is better than a ZERO </html>"); 
         rulesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rulesLabel.setForeground(realOrange);
         myPanel.add(rulesLabel);
