@@ -47,5 +47,5 @@ public class ScoresTest {
         Boolean expected = true;
         assertEquals(expected, score.fullHouse(hand));
     }
-    
+
 }
