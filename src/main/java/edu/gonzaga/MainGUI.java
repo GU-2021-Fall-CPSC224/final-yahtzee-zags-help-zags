@@ -31,12 +31,12 @@ public class MainGUI {
         ImageIcon yahtzeeIcon = new ImageIcon("./YahtzeeMedia/Misc/pumpkin.jpg");
         mainWindow.setIconImage(yahtzeeIcon.getImage());
 
-        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
-        JPanel pumpkinPanel = new JPanel();
-        pumpkinPanel.setBackground(realOrange);
-        pumpkinPanel.add(new JLabel(pumpkinLogo));
-        mainWindow.add(pumpkinPanel);
-        pumpkinPanel.setVisible(true);
+//        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
+//        JPanel pumpkinPanel = new JPanel();
+//        pumpkinPanel.setBackground(realOrange);
+//        pumpkinPanel.add(new JLabel(pumpkinLogo));
+//        mainWindow.add(pumpkinPanel);
+//        pumpkinPanel.setVisible(true);
 
         // Start Screen
         mainWindow.setVisible(true);
@@ -45,13 +45,20 @@ public class MainGUI {
         myPanel.setBackground(realOrange);
         mainWindow.add(myPanel);
 
+        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
+        JPanel pumpkinPanel = new JPanel();
+        pumpkinPanel.setBackground(realOrange);
+        pumpkinPanel.add(new JLabel(pumpkinLogo));
+        myPanel.add(pumpkinPanel);
+        pumpkinPanel.setVisible(true);
+
         // Button
         JButton playButton = new JButton("Play");
         playButton.setForeground(realOrange);
         playButton.setBackground(Color.black);
         myPanel.add(playButton);
         Dimension playButtonSize = playButton.getPreferredSize();
-        playButton.setBounds(315, 550, playButtonSize.width, playButtonSize.height);
+        playButton.setBounds(290, 550, playButtonSize.width, playButtonSize.height);
         playButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e){
@@ -322,6 +329,7 @@ public class MainGUI {
             }
             finalScreenPanel.add(scoresPanel);
             finalScreenPanel.add(buttonPanel);
+            finalScreenPanel.setBackground(Color.black);
             mainWindow.add(finalScreenPanel);
 
             // play again action

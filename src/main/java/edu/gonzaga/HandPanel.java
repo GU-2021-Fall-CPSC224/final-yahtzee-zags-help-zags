@@ -106,7 +106,7 @@ public class HandPanel extends JPanel implements ActionListener
 
         this.setBounds(this.locationX, this.locationY, this.sizeX, this.sizeY);
         this.setLayout(null);
-        this.setBackground(realOrange);
+        this.setBackground(Color.black);
 
         this.add(this.rollButton);
         this.initHand();
