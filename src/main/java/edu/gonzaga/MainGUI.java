@@ -12,8 +12,10 @@ public class MainGUI {
         mainWindow.setResizable(false);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ImageIcon yahtzeeIcon = new ImageIcon("./YahtzeeMedia/Logos/yahtzee.png");
+        ImageIcon yahtzeeIcon = new ImageIcon("./YahtzeeMedia/Misc/pumpkin.jpg");
         mainWindow.setIconImage(yahtzeeIcon.getImage());
+
+
 
         mainWindow.setVisible(true);
     }
