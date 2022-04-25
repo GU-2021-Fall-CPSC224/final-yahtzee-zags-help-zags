@@ -31,12 +31,12 @@ public class MainGUI {
         ImageIcon yahtzeeIcon = new ImageIcon("./YahtzeeMedia/Misc/pumpkin.jpg");
         mainWindow.setIconImage(yahtzeeIcon.getImage());
 
-//        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
-//        JPanel pumpkinPanel = new JPanel();
-//        pumpkinPanel.setBackground(realOrange);
-//        pumpkinPanel.add(new JLabel(pumpkinLogo));
-//        mainWindow.add(pumpkinPanel);
-//        pumpkinPanel.setVisible(true);
+        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
+        JPanel pumpkinPanel = new JPanel();
+        pumpkinPanel.setBackground(realOrange);
+        pumpkinPanel.add(new JLabel(pumpkinLogo));
+        mainWindow.add(pumpkinPanel);
+        pumpkinPanel.setVisible(true);
 
         // Start Screen
         mainWindow.setVisible(true);
@@ -45,12 +45,12 @@ public class MainGUI {
         myPanel.setBackground(realOrange);
         mainWindow.add(myPanel);
 
-        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
-        JPanel pumpkinPanel = new JPanel();
-        pumpkinPanel.setBackground(realOrange);
-        pumpkinPanel.add(new JLabel(pumpkinLogo));
-        myPanel.add(pumpkinPanel);
-        pumpkinPanel.setVisible(true);
+//        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
+//        JPanel pumpkinPanel = new JPanel();
+//        pumpkinPanel.setBackground(realOrange);
+//        pumpkinPanel.add(new JLabel(pumpkinLogo));
+//        myPanel.add(pumpkinPanel);
+//        pumpkinPanel.setVisible(true);
 
         // Button
         JButton playButton = new JButton("Play");
