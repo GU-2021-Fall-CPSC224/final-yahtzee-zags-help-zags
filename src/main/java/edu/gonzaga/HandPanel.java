@@ -45,6 +45,7 @@ public class HandPanel extends JPanel implements ActionListener
     private ArrayList<JLabel> diceImages; // list of dice images
     private ArrayList<JCheckBox> handCheckBoxes; // list of checkboxes for dice in the hand
     private DiceImages diceImagesObj; // object to hold dice images
+    private final Color realOrange = new Color(255, 127, 0);
 
     /**
      * 
@@ -105,7 +106,7 @@ public class HandPanel extends JPanel implements ActionListener
 
         this.setBounds(this.locationX, this.locationY, this.sizeX, this.sizeY);
         this.setLayout(null);
-        this.setBackground(Color.orange);
+        this.setBackground(realOrange);
 
         this.add(this.rollButton);
         this.initHand();

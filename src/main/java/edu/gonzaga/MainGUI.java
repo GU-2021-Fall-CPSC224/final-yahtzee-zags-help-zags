@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class MainGUI {
@@ -16,6 +17,7 @@ public class MainGUI {
     JFrame mainWindow;
     public Integer result;
     private Integer playerTracker = 1;
+    private final Color realOrange = new Color(255, 127, 0);
 
     public MainGUI() {
         // Frame
@@ -29,52 +31,57 @@ public class MainGUI {
         ImageIcon yahtzeeIcon = new ImageIcon("./YahtzeeMedia/Misc/pumpkin.jpg");
         mainWindow.setIconImage(yahtzeeIcon.getImage());
 
+        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
+        JPanel pumpkinPanel = new JPanel();
+        pumpkinPanel.setBackground(realOrange);
+        pumpkinPanel.add(new JLabel(pumpkinLogo));
+        mainWindow.add(pumpkinPanel);
+        pumpkinPanel.setVisible(true);
+
         // Start Screen
         mainWindow.setVisible(true);
-        startScreen();
-    }
 
-    void startScreen() {
-        // Panel
         JPanel myPanel = new JPanel();
-        myPanel.setBackground(Color.orange);
+        myPanel.setBackground(realOrange);
         mainWindow.add(myPanel);
-
-
-        // Image
-        //ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
-        //JLabel myLabel = new JLabel();
-        //myLabel.setIcon(pumpkinLogo);
-        //myPanel.add(myLabel);
-        //myPanel.add(new JLabel(pumpkinLogo));
-
 
         // Button
         JButton playButton = new JButton("Play");
-        playButton.setForeground(Color.orange);
+        playButton.setForeground(realOrange);
         playButton.setBackground(Color.black);
         myPanel.add(playButton);
         Dimension playButtonSize = playButton.getPreferredSize();
-        playButton.setBounds(330, 350, playButtonSize.width, playButtonSize.height);
-
-        // Action Listener for Button
+        playButton.setBounds(315, 550, playButtonSize.width, playButtonSize.height);
         playButton.addActionListener(
-                new ActionListener(){
+                new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         myPanel.setVisible(false);
+                        pumpkinPanel.setVisible(false);
                         showRules();
                     }
                 }
         );
 
         myPanel.setVisible(true);
+
     }
 
     void showRules() {
         JPanel myPanel = new JPanel();
+        LayoutManager layout = new BoxLayout(myPanel, BoxLayout.Y_AXIS);
+        myPanel.setLayout(layout);
+        myPanel.setBackground(Color.black);
         mainWindow.add(myPanel);
 
+        JLabel rulesLabel = new JLabel("[INSERT RULES]");
+        rulesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        rulesLabel.setForeground(realOrange);
+        myPanel.add(rulesLabel);
+
         JButton confirmEntry = new JButton("Play Game!");
+        confirmEntry.setAlignmentX(Component.CENTER_ALIGNMENT);
+        confirmEntry.setBackground(realOrange);
+        confirmEntry.setForeground(Color.black);
         myPanel.add(confirmEntry);
 
         confirmEntry.addActionListener(
@@ -89,9 +96,11 @@ public class MainGUI {
 
     void selectPlayerAmt() {
         JPanel myPanel = new JPanel();
+        myPanel.setBackground(realOrange);
         mainWindow.add(myPanel);
 
         JLabel selectAmtLabel = new JLabel("Select amount of players: ");
+        selectAmtLabel.setForeground(Color.black);
         myPanel.add(selectAmtLabel);
 
         JComboBox selectNumPlayers = new JComboBox();
@@ -101,6 +110,8 @@ public class MainGUI {
         myPanel.add(selectNumPlayers);
 
         JButton confirmEntry = new JButton("Enter");
+        confirmEntry.setBackground(Color.black);
+        confirmEntry.setForeground(realOrange);
         myPanel.add(confirmEntry);
 
 
@@ -115,16 +126,6 @@ public class MainGUI {
                             ex.printStackTrace();
                         }
                         try {
-                            //PlayerScoreStatus newScoreStatus = new PlayerScoreStatus(playerTracker % Integer.parseInt(String.valueOf(result)));
-//                            checkPlayerTurns(newScoreStatus);
-                            //Integer playerNum = 1 % Integer.parseInt(String.valueOf(result))
-//                            if(playerTracker.equals(result)) {
-//                                playerTracker = 1;
-//                            }
-//                            else {
-//                                playerTracker++;
-//                            }
-                            System.out.println(playerTracker);
                             PlayerScoreStatus scoreStatus = new PlayerScoreStatus(playerTracker);
                             playerTurn(scoreStatus);
                         } catch (IOException ex) {
@@ -215,6 +216,7 @@ public class MainGUI {
         int lowerTotal = 0;
         for(int i = 6; i < 13; i++) {
             JLabel lowertotalLabel = new JLabel(currentScores.get(i).get(0) + "             " + currentScores.get(i).get(3));
+            lowertotalLabel.setForeground(Color.black);
             cardPanel.add(lowertotalLabel);
             lowerTotal += Integer.valueOf(currentScores.get(i).get(3));
         }
@@ -224,6 +226,7 @@ public class MainGUI {
         cardPanel.add(lowerLabel);
         cardPanel.add(grandtotalLabel);
         cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
+        cardPanel.setBackground(realOrange);
 
         return cardPanel;
     }
@@ -327,7 +330,8 @@ public class MainGUI {
                         public void actionPerformed(ActionEvent e) {
                             finalScreenPanel.setVisible(false);
                             result = 0;
-                            startScreen();
+                            mainWindow.setVisible(false);
+                            MainGUI newGUI = new MainGUI();
                         }
                     }
             );
