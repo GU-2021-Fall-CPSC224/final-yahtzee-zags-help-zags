@@ -155,8 +155,7 @@ public class HandPanel extends JPanel implements ActionListener
      * @param void
      * @return void
      */
-    private void roll()
-    {
+    private void roll(){
         this.currRollCount++; // increment the roll count once the method is called
 
         if (this.currRollCount <= 3)
@@ -174,6 +173,7 @@ public class HandPanel extends JPanel implements ActionListener
         if (this.currRollCount == 3)
         {
             this.rollButton.setEnabled(false);
+            this.setVisible(false);
             this.disableCheckBoxes();
             this.currRollCount = 1;
         }

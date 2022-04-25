@@ -138,8 +138,30 @@ public class MainGUI {
         JPanel currentPanel = currentPlayer.showScoreCard(scoreStatus);
         mainWindow.add(currentPanel);
 
+        JButton nextButton = new JButton("Next");
+        JPanel newPanel = new JPanel();
+        newPanel.add(nextButton);
+        nextButton.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        ArrayList<String> diceStrings = new ArrayList<>();
+                        int[] diceArray = handPanel.getHandValues();
+                        for (int i = 0; i < 5; i++){
+                            diceStrings.add(Integer.toString(diceArray[i]));
+                        }
 
+                        try {
+                            JPanel updatedPanel = currentPlayer.updateScores(diceStrings, scoreStatus);
+                            currentPanel.setVisible(false);
+                            mainWindow.add(updatedPanel);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+        );
 
+        mainWindow.add(newPanel);
 
     }
 
