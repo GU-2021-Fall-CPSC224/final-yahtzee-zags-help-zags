@@ -7,15 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainGUI {
 
     JFrame mainWindow;
-    public int result;
-
-    ArrayList<PlayerScoreStatus> playersArray;
+    public Integer result;
 
     public MainGUI() {
         // Frame
@@ -105,17 +104,43 @@ public class MainGUI {
         confirmEntry.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        result = Integer.parseInt((String) selectNumPlayers.getSelectedItem());
+                        result = Integer.parseInt(selectNumPlayers.getSelectedItem().toString());
+                        try {
+                            createScorecards();
+                        } catch (FileNotFoundException ex) {
+                            ex.printStackTrace();
+                        }
+                        try {
+                            playerTurn();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        myPanel.setVisible(false);
                     }
                 }
         );
     }
 
-    void createScorecards() {
+    void createScorecards() throws FileNotFoundException {
         for (int i = 1; i <= result; i++){
-            //PlayerScoreStatus - make new player
-            //add player to player array list
+            PlayerScoreStatus currentPlayerScoreStatus = new PlayerScoreStatus(i);
+            currentPlayerScoreStatus.createPlayerScoreFile();
         }
+    }
+
+    void playerTurn() throws IOException {
+        HandPanel handPanel = new HandPanel(350, 0);
+        mainWindow.add(handPanel);
+
+        PlayerScoreStatus scoreStatus = new PlayerScoreStatus(1);
+
+        ScorePanelGUI currentPlayer = new ScorePanelGUI();
+        JPanel currentPanel = currentPlayer.showScoreCard(scoreStatus);
+        mainWindow.add(currentPanel);
+
+
+
+
     }
 
 }

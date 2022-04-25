@@ -87,6 +87,12 @@ public class HandPanel extends JPanel implements ActionListener
         this.roll();
     }
 
+    public void enableAll()
+    {
+        this.enableCheckBoxes();
+        this.rollButton.setEnabled(true);
+    }
+
     /**
      * 
      */
