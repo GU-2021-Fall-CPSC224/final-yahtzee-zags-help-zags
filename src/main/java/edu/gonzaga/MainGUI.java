@@ -18,4 +18,9 @@ public class MainGUI {
         mainWindow.setVisible(true);
     }
 
+    void startGame() {
+        JPanel myPanel = new JPanel();
+        
+    }
+
 }
