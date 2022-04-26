@@ -1,20 +1,36 @@
-package edu.gonzaga;
+/**
+ * GUI game of Yahtzee!
+ * 
+ * CPSC 224, Spring 2022
+ * Final project
+ * Sources: Dr. Aaron Crandall's DiceImages class from the class
+ *  gitHub repo
+ *  - Crandall lecture 01 slides for Yahtzee game rules
+ * 
+ * @author Zags Help Zags team
+ * @version v1.0, 4/24/2022
+*/
 
+package edu.gonzaga;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 /** Class to store the state of a point configuration for hand. */
 public class ScoreCardKey {
     private ArrayList<ArrayList<String>> scoreCardKey;
 
+    /**
+     * Constructor for the ScoreCardKey class.
+     * 
+     * @param hand
+     * @param currentScores
+     * @throws IOException
+     */
     public ScoreCardKey(ArrayList<String> hand, PlayerScoreStatus currentScores) throws IOException {
         //ScoreStatus currentScores = new ScoreStatus();
         ArrayList<ArrayList<String>> cardList = currentScores.readScoreCard();
-
         ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
-
 
         //upper score card
         for (int dieValue = 1; dieValue <= 6; dieValue++) {
@@ -113,6 +129,12 @@ public class ScoreCardKey {
         this.scoreCardKey = list;
     }
 
+    /**
+     * Getter for the scoreCardKey field.
+     * 
+     * @param void
+     * @return ArrayList<ArrayList<String>> - the scoreCardKey field
+     */
     ArrayList getKey() {
         return this.scoreCardKey;
     }
@@ -133,7 +155,7 @@ public class ScoreCardKey {
                 }
             }
         }
+
         return "";
     }
-
 }

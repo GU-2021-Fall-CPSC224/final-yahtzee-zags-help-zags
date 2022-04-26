@@ -5,6 +5,7 @@
  * Final project
  * Sources: Dr. Aaron Crandall's DiceImages class from the class
  *  gitHub repo
+ *  - Crandall lecture 01 slides for Yahtzee game rules
  * 
  * @author Zags Help Zags team
  * @version v1.0, 4/24/2022
@@ -49,7 +50,11 @@ public class HandPanel extends JPanel implements ActionListener
     private final Color purple = new Color(83,0,149);
 
     /**
+     * Constructor for the HandPanel class. sets the x and y location of the panel 
+     * and sets other fields.
      * 
+     * @param x x-coordinate of the panel
+     * @return void
      */
     public HandPanel(int locationX, int locationY)
     {
@@ -82,13 +87,22 @@ public class HandPanel extends JPanel implements ActionListener
     }
 
     /**
+     * Action listener for the roll button. Calls this.roll() method
      * 
+     * @param ActionEvent e - event that triggered the action
+     * @return void
      */
     public void actionPerformed(ActionEvent e)
     {
         this.roll();
     }
 
+    /**
+     * Re-enables all check boxes and the roll button.
+     * 
+     * @param void
+     * @return void
+     */
     public void enableAll()
     {
         this.enableCheckBoxes();
@@ -96,7 +110,10 @@ public class HandPanel extends JPanel implements ActionListener
     }
 
     /**
+     * Makes and addes components to the panel.
      * 
+     * @param void
+     * @return void
      */
     private void makePanel()
     {
@@ -160,7 +177,8 @@ public class HandPanel extends JPanel implements ActionListener
      * @param void
      * @return void
      */
-    private void roll(){
+    private void roll()
+    {
         this.currRollCount++; // increment the roll count once the method is called
 
         if (this.currRollCount <= 3)
@@ -220,7 +238,9 @@ public class HandPanel extends JPanel implements ActionListener
     }
 
     /**
+     * Borrowed class to hold dice images.
      * 
+     * @author Dr. Crandall
      */
     private class DiceImages
     {

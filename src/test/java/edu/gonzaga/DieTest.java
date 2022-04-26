@@ -1,12 +1,14 @@
 /**
- * This program plays an abreviated game of Yahtzee with the user
- *
- * CPSC 224 Spring 2022
- * Homework Assignment #3
- * No Sources to cite
- *
- * @author Jesse Adams
- * @versin v3.0 03/04/2022
+ * GUI game of Yahtzee!
+ * 
+ * CPSC 224, Spring 2022
+ * Final project
+ * Sources: Dr. Aaron Crandall's DiceImages class from the class
+ *  gitHub repo
+ *  - Crandall lecture 01 slides for Yahtzee game rules
+ * 
+ * @author Zags Help Zags team
+ * @version v1.0, 4/24/2022
 */
 
 package edu.gonzaga;
