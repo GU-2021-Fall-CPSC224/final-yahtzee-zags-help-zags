@@ -46,7 +46,8 @@ public class HandPanel extends JPanel implements ActionListener
     private ArrayList<JLabel> diceImages; // list of dice images
     private ArrayList<JCheckBox> handCheckBoxes; // list of checkboxes for dice in the hand
     private DiceImages diceImagesObj; // object to hold dice images
-    // private final Color realOrange = new Color(255, 127, 0);
+    private final Color realOrange = new Color(255, 127, 0);
+    private final Color purple = new Color(83,0,149);
 
     /**
      * Constructor for the HandPanel class. sets the x and y location of the panel 
@@ -120,6 +121,8 @@ public class HandPanel extends JPanel implements ActionListener
         this.rollButton.setBounds(10, 270, 150, 50);
         this.rollButton.addActionListener(this);
         this.rollButton.setVisible(true);
+        this.rollButton.setBackground(realOrange);
+        this.rollButton.setForeground(Color.black);
 
         this.setBounds(this.locationX, this.locationY, this.sizeX, this.sizeY);
         this.setLayout(null);
@@ -152,8 +155,9 @@ public class HandPanel extends JPanel implements ActionListener
 
             // initialize dice images (they are lables)
             JCheckBox dieCheckBox = new JCheckBox("Keep Die");
+            dieCheckBox.setBackground(purple);
             dieCheckBox.setBounds(60, (50 * i + 23), 100, 25);
-            dieCheckBox.setForeground(Color.black);
+            dieCheckBox.setForeground(Color.white);
             dieCheckBox.setEnabled(false);
             this.handCheckBoxes.add(dieCheckBox);
             this.add(dieCheckBox);

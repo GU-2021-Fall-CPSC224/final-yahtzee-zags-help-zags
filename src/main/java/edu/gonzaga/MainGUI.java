@@ -32,6 +32,7 @@ public class MainGUI {
     public Integer result;
     private Integer playerTracker = 1;
     private final Color realOrange = new Color(255, 127, 0);
+    private final Color purple = new Color(83,0,149);
 
     /**
      * Constructor for the MainGUI class.
@@ -64,13 +65,6 @@ public class MainGUI {
         JPanel myPanel = new JPanel();
         myPanel.setBackground(realOrange);
         mainWindow.add(myPanel);
-
-//        ImageIcon pumpkinLogo = new ImageIcon("./YahtzeeMedia/Logos/pumpking.jpeg");
-//        JPanel pumpkinPanel = new JPanel();
-//        pumpkinPanel.setBackground(realOrange);
-//        pumpkinPanel.add(new JLabel(pumpkinLogo));
-//        myPanel.add(pumpkinPanel);
-//        pumpkinPanel.setVisible(true);
 
         // Button
         JButton playButton = new JButton("Play");
@@ -200,12 +194,12 @@ public class MainGUI {
         HandPanel handPanel = new HandPanel(350, 0);
         mainWindow.add(handPanel);
 
-        //PlayerScoreStatus scoreStatus = new PlayerScoreStatus(playerNum);
-
         JPanel currentPanel = showScoreCard(scoreStatus);
         mainWindow.add(currentPanel);
 
         JButton nextButton = new JButton("Choose Score");
+        nextButton.setBackground(Color.black);
+        nextButton.setForeground(realOrange);
         currentPanel.add(nextButton);
         nextButton.addActionListener(
             new ActionListener(){
@@ -241,14 +235,17 @@ public class MainGUI {
 
         JPanel cardPanel = new JPanel();
         JLabel playerLabel = new JLabel("Player " + scores.getPlayerNum() + ":");
+        playerLabel.setForeground(purple);
         cardPanel.add(playerLabel);
         JLabel titleLabel = new JLabel("Line        Score");
+        titleLabel.setForeground(Color.black);
         cardPanel.add(titleLabel);
 
         int subtotal = 0;
         for(int i = 0; i < 6; i++) {
             JLabel upperLabel = new JLabel(currentScores.get(i).get(0) + "              " + currentScores.get(i).get(3));
             subtotal += Integer.valueOf(currentScores.get(i).get(3));
+            upperLabel.setForeground(Color.black);
             cardPanel.add(upperLabel);
         }
         int bonus = 0;
@@ -259,8 +256,11 @@ public class MainGUI {
         JLabel subtotalLabel = new JLabel("Sub Total      " + subtotal);
         JLabel bonusLabel = new JLabel("Bonus          " + bonus);
         JLabel uppertotalLabel = new JLabel("Upper Total    " + upperTotal);
+        subtotalLabel.setForeground(Color.black);
         cardPanel.add(subtotalLabel);
+        bonusLabel.setForeground(Color.black);
         cardPanel.add(bonusLabel);
+        uppertotalLabel.setForeground(Color.black);
         cardPanel.add(uppertotalLabel);
 
         int lowerTotal = 0;
@@ -273,7 +273,9 @@ public class MainGUI {
         int grandTotal = upperTotal + lowerTotal;
         JLabel lowerLabel = new JLabel("Lower Total    " + lowerTotal);
         JLabel grandtotalLabel = new JLabel("Grand Total    " + grandTotal);
+        lowerLabel.setForeground(Color.black);
         cardPanel.add(lowerLabel);
+        grandtotalLabel.setForeground(Color.black);
         cardPanel.add(grandtotalLabel);
         cardPanel.setLayout(new BoxLayout(cardPanel, BoxLayout.Y_AXIS));
         cardPanel.setBackground(realOrange);
@@ -294,6 +296,7 @@ public class MainGUI {
     JPanel updateScores(ArrayList<String> hand, PlayerScoreStatus playerStatus) throws IOException {
         // key with correct scores
         JPanel newPanel = new JPanel();
+        newPanel.setBackground(Color.black);
 
         ScoreCardKey keyValues = new ScoreCardKey(hand, playerStatus);
         ArrayList<ArrayList<String>> keyList = keyValues.getKey();
@@ -303,6 +306,7 @@ public class MainGUI {
         for(int i = 0; i < keyList.size(); i++) {
             if(keyList.get(i).get(1).equals("n")) {
                 JLabel newLabel = new JLabel("score is " + keyList.get(i).get(3) + " if you choose " + keyList.get(i).get(0) + " line");
+                newLabel.setForeground(realOrange);
                 newPanel.add(newLabel);
                 choices.addItem(keyList.get(i).get(0));
             }
@@ -310,6 +314,8 @@ public class MainGUI {
         newPanel.add(choices);
 
         JButton buttonSelect = new JButton("Enter");
+        buttonSelect.setBackground(purple);
+        buttonSelect.setForeground(Color.white);
         newPanel.add(buttonSelect);
         newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.Y_AXIS));
 
@@ -332,8 +338,6 @@ public class MainGUI {
             try {
                 playerStatus.updateScoreCard(currentScores);
                 newPanel.setVisible(false);
-//                playerTracker++;
-//                PlayerScoreStatus newScoreStatus = new PlayerScoreStatus(playerTracker % Integer.parseInt(result));
                 checkPlayerTurns();
             } 
             catch (IOException ex) {
@@ -367,14 +371,20 @@ public class MainGUI {
             JPanel finalScreenPanel = new JPanel();
             LayoutManager finalScreenLayout = new BoxLayout(finalScreenPanel, BoxLayout.Y_AXIS);
             finalScreenPanel.setLayout(finalScreenLayout);
+            finalScreenPanel.setBackground(Color.black);
             JPanel scoresPanel = new JPanel();
+            scoresPanel.setBackground(Color.black);
             LayoutManager layout = new BoxLayout(scoresPanel, BoxLayout.X_AXIS);
             scoresPanel.setLayout(layout);
             JButton playAgain = new JButton("Play Again");
+            playAgain.setBackground(purple);
+            playAgain.setForeground(Color.white);
             JPanel buttonPanel = new JPanel();
+            buttonPanel.setBackground(Color.black);
             buttonPanel.add(playAgain);
             for(int i = 1; i <= result; i++) {
                 JPanel playerScore = new JPanel();
+                playerScore.setBackground(realOrange);
                 PlayerScoreStatus currentStatus = new PlayerScoreStatus(i);
                 playerScore.add(showScoreCard(currentStatus));
                 scoresPanel.add(playerScore);
