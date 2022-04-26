@@ -1,4 +1,18 @@
+/**
+ * GUI game of Yahtzee!
+ * 
+ * CPSC 224, Spring 2022
+ * Final project
+ * Sources: Dr. Aaron Crandall's DiceImages class from the class
+ *  gitHub repo
+ *  - Crandall lecture 01 slides for Yahtzee game rules
+ * 
+ * @author Zags Help Zags team
+ * @version v1.0, 4/24/2022
+*/
+
 package edu.gonzaga;
+
 import java.util.ArrayList;
 
 /**Class to identify score patterns*/
@@ -52,6 +66,7 @@ public class Scores {
         }
         if (found2K && found3K)
             foundFH = true;
+    
         return foundFH;
     }
 
@@ -64,6 +79,7 @@ public class Scores {
     int straight(ArrayList<String> hand) {
         int maxLength = 1;
         int curLength = 1;
+
         for(int counter = 0; counter < 4; counter++)
         {
             if(Integer.valueOf(hand.get(counter)) + 1 == Integer.valueOf(hand.get(counter + 1)))
@@ -73,6 +89,7 @@ public class Scores {
             if (curLength > maxLength)
                 maxLength = curLength;
         }
+
         return maxLength;
     }
 
@@ -84,6 +101,7 @@ public class Scores {
      */
     int totalDice(ArrayList<String> hand) {
         int total = 0;
+
         for (int diePosition = 0; diePosition < 5; diePosition++)
         {
             total += Integer.valueOf(hand.get(diePosition));

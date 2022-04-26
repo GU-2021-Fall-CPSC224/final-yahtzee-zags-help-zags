@@ -1,8 +1,15 @@
 /**
- * Sources: Crandall lecture slides set 01 for yahtzee rules
+ * GUI game of Yahtzee!
+ * 
+ * CPSC 224, Spring 2022
+ * Final project
+ * Sources: Dr. Aaron Crandall's DiceImages class from the class
+ *  gitHub repo
+ *  - Crandall lecture 01 slides for Yahtzee game rules
  * 
  * @author Zags Help Zags team
- */
+ * @version v1.0, 4/24/2022
+*/
 
 package edu.gonzaga;
 
@@ -18,6 +25,11 @@ import java.io.IOException;
 import java.nio.Buffer;
 import java.util.ArrayList;
 
+/**
+ * Main GUI class for Yahtzee! 
+ * 
+ * @author Zags Help Zags team
+ */
 public class MainGUI {
 
     JFrame mainWindow;
@@ -25,6 +37,12 @@ public class MainGUI {
     private Integer playerTracker = 1;
     private final Color realOrange = new Color(255, 127, 0);
 
+    /**
+     * Constructor for the MainGUI class.
+     * 
+     * @param void
+     * @return void
+     */
     public MainGUI() {
         // Frame
         mainWindow = new JFrame("Yahtzee!");
@@ -66,19 +84,24 @@ public class MainGUI {
         Dimension playButtonSize = playButton.getPreferredSize();
         playButton.setBounds(290, 550, playButtonSize.width, playButtonSize.height);
         playButton.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e){
-                        myPanel.setVisible(false);
-                        pumpkinPanel.setVisible(false);
-                        showRules();
-                    }
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e){
+                    myPanel.setVisible(false);
+                    pumpkinPanel.setVisible(false);
+                    showRules();
                 }
+            }
         );
 
         myPanel.setVisible(true);
-
     }
 
+    /**
+     * Shows the rules of Yahtzee on a panel.
+     * 
+     * @param void
+     * @return void
+     */
     void showRules() {
         JPanel myPanel = new JPanel();
         LayoutManager layout = new BoxLayout(myPanel, BoxLayout.Y_AXIS);
@@ -98,15 +121,22 @@ public class MainGUI {
         myPanel.add(confirmEntry);
 
         confirmEntry.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        myPanel.setVisible(false);
-                        selectPlayerAmt();
-                    }
+            new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    myPanel.setVisible(false);
+                    selectPlayerAmt();
                 }
+            }
         );
     }
 
+    /**
+     * Allows the players to choose how many players are in the game, 
+     * between 1 and 4 via a drop down menue.
+     * 
+     * @param void
+     * @return void 
+     */
     void selectPlayerAmt() {
         JPanel myPanel = new JPanel();
         myPanel.setBackground(realOrange);
@@ -127,29 +157,35 @@ public class MainGUI {
         confirmEntry.setForeground(realOrange);
         myPanel.add(confirmEntry);
 
-
         // Action Listener for Button
         confirmEntry.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        result = Integer.parseInt(selectNumPlayers.getSelectedItem().toString());
-                        try {
-                            createScorecards();
-                        } catch (FileNotFoundException ex) {
-                            ex.printStackTrace();
-                        }
-                        try {
-                            PlayerScoreStatus scoreStatus = new PlayerScoreStatus(playerTracker);
-                            playerTurn(scoreStatus);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                        myPanel.setVisible(false);
+            new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    result = Integer.parseInt(selectNumPlayers.getSelectedItem().toString());
+                    try {
+                        createScorecards();
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
                     }
+                    try {
+                        PlayerScoreStatus scoreStatus = new PlayerScoreStatus(playerTracker);
+                        playerTurn(scoreStatus);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    myPanel.setVisible(false);
                 }
+            }
         );
     }
 
+    /**
+     * Creates the scorecards for each player
+     * 
+     * @param void
+     * @return void
+     * @throws FileNotFoundException
+     */
     void createScorecards() throws FileNotFoundException {
         for (int i = 1; i <= result; i++){
             PlayerScoreStatus currentPlayerScoreStatus = new PlayerScoreStatus(i);
@@ -157,6 +193,13 @@ public class MainGUI {
         }
     }
 
+    /**
+     * Displays all info, scorecard and dice to roll for an individual 
+     * player's turn.
+     * 
+     * @param scoreStatus
+     * @throws IOException
+     */
     void playerTurn(PlayerScoreStatus scoreStatus) throws IOException {
         HandPanel handPanel = new HandPanel(350, 0);
         mainWindow.add(handPanel);
@@ -169,32 +212,30 @@ public class MainGUI {
         JButton nextButton = new JButton("Choose Score");
         currentPanel.add(nextButton);
         nextButton.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        handPanel.hidePanel();
-                        ArrayList<String> diceStrings = new ArrayList<>();
-                        int[] diceArray = handPanel.getHandValues();
-                        for (int i = 0; i < 5; i++){
-                            diceStrings.add(Integer.toString(diceArray[i]));
-                        }
+            new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    handPanel.hidePanel();
+                    ArrayList<String> diceStrings = new ArrayList<>();
+                    int[] diceArray = handPanel.getHandValues();
+                    for (int i = 0; i < 5; i++){
+                        diceStrings.add(Integer.toString(diceArray[i]));
+                    }
 
-                        try {
-                            JPanel updatedPanel = updateScores(diceStrings, scoreStatus);
-                            currentPanel.setVisible(false);
-                            mainWindow.add(updatedPanel);
+                    try {
+                        JPanel updatedPanel = updateScores(diceStrings, scoreStatus);
+                        currentPanel.setVisible(false);
+                        mainWindow.add(updatedPanel);
 
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
                 }
+            }
         );
     }
 
-
-
     /**
-     creates an up to date panel containing the current score
+     * creates an up to date panel containing the current score
      *
      * @return cardPanel
      */
@@ -246,11 +287,13 @@ public class MainGUI {
 
 
     /**
-     creates panel for user to view and input the score code for the roll
-     gives information to ScoreStatus updateScores()
-     Goes to next method loopGame()
+     * creates panel for user to view and input the score code for the roll
+     * gives information to ScoreStatus updateScores()
+     * Goes to next method loopGame()
      *
-     * @param hand, cardList
+     * @param hand - arraylist of String
+     * @param playerStatus
+     * @throws IOException
      */
     JPanel updateScores(ArrayList<String> hand, PlayerScoreStatus playerStatus) throws IOException {
         // key with correct scores
@@ -296,16 +339,23 @@ public class MainGUI {
 //                playerTracker++;
 //                PlayerScoreStatus newScoreStatus = new PlayerScoreStatus(playerTracker % Integer.parseInt(result));
                 checkPlayerTurns();
-
-            } catch (IOException ex) {
+            } 
+            catch (IOException ex) {
                 ex.printStackTrace();
             }
-
         });
 
         return newPanel;
     }
 
+    /**
+     * Increments or the playerTracker field and resets it if player 
+     * 1 is up again. 
+     * 
+     * @param void
+     * @return void
+     * @throws IOException
+     */
     void checkPlayerTurns() throws IOException {
         if(playerTracker.equals(result)) {
             playerTracker = 1;
@@ -340,20 +390,15 @@ public class MainGUI {
 
             // play again action
             playAgain.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            finalScreenPanel.setVisible(false);
-                            result = 0;
-                            mainWindow.setVisible(false);
-                            MainGUI newGUI = new MainGUI();
-                        }
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        finalScreenPanel.setVisible(false);
+                        result = 0;
+                        mainWindow.setVisible(false);
+                        MainGUI newGUI = new MainGUI();
                     }
+                }
             );
-
-
         }
     }
-
-
-
 }
